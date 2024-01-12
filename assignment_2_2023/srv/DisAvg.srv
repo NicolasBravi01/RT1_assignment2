@@ -1,0 +1,4 @@
+---
+float32 d #distance from the target
+float32 avg_v_x #average velocity along x
+float32 avg_v_z #average velocity along z
