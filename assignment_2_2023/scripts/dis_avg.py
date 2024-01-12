@@ -30,7 +30,7 @@ def distAvgCallback(msg):
 
     avg_v_x=sum(v_x_list)/len(v_x_list) 
     avg_v_z=sum(v_z_list)/len(v_z_list)
-    print(v_x_list)
+    #print(v_x_list)
     
     return DisAvgResponse(distance,avg_v_x,avg_v_z)
 
