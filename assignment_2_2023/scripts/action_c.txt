@@ -53,33 +53,41 @@ def action_client():
 
     # Creates a goal to send to the action server.
     
-    #if client.get_state() == actionlib.GoalStatus.SUCCEDED:
-    #    rospy.loginfo("Goal reached")
-    #    print("ho raggiunto")
+    while not rospy.is_shutdown():    
+    
+        if client.get_state() == actionlib.GoalStatus.SUCCEDED:
+            rospy.loginfo("Goal reached")
+            print("ho raggiunto")
             
-    #else:
-    #    command = input("Press c to cancel the goal, otherwhise press anything else: ")
-    #    if command == 'c':
-    #        client.cancel_goal()
-    #        rospy.loginfo("Goal cancelled")
-    #        print("ho cancellato")
+        else:
+            command = input("Press c to cancel the goal, otherwhise press anything else: ")
+            if command == 'c':
+                client.cancel_goal()
+                rospy.loginfo("Goal cancelled")
+                print("ho cancellato")
+                continue
         
     
-         
-    print("Insert a goal")
-    
-    x = float(input("Insert x: "))
-    y = float(input("Insert y: "))
         
         
-    goal = assignment_2_2023.msg.PlanningGoal()
-    goal.target_pose.pose.position.x = x
-    goal.target_pose.pose.position.y = y
+        print("Insert a goal")
+        try:
+            x = float(input("Insert x: "))
+            y = float(input("Insert y: "))
         
-    rospy.set_param('des_pos_x', x)
-    rospy.set_param('des_pos_y', y)
+        except:
+            print("Invalid input")
+            continue
         
-    client.send_goal(goal)
+        
+        goal = assignment_2_2023.msg.PlanningGoal()
+        goal.target_pose.pose.position.x = x
+        goal.target_pose.pose.position.y = y
+        
+        rospy.set_param('des_pos_x', x)
+        rospy.set_param('des_pos_y', y)
+        
+        client.send_goal(goal)
         
         
         
