@@ -27,3 +27,16 @@ Now it is possible to run
 ```bash
 roslaunch assignment_2_2023 assignment1.launch
 ```
+
+
+## Nodes description
+We just have provided theese nodes:
+  - `bug_as.py`: Action server which implements the bug0 algorithm.
+  - `wall_follow_service.py `: Service node that makes the robot follow the wall if it meets an obstacle.
+  - `go_to_point_service.py `: Service node that makes the robot go straight to the goal position.
+
+### action_client.py
+
+### last_target.py
+
+### dis_avg.py
