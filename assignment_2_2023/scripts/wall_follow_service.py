@@ -98,14 +98,14 @@ def take_action():
 
 def find_wall():
     msg = Twist()
-    msg.linear.x = 0.2*2
-    msg.angular.z = -0.3*1.5
+    msg.linear.x = 0.2
+    msg.angular.z = -0.3
     return msg
 
 
 def turn_left():
     msg = Twist()
-    msg.angular.z = 0.3*2
+    msg.angular.z = 0.3
     return msg
 
 
@@ -113,7 +113,7 @@ def follow_the_wall():
     global regions_
 
     msg = Twist()
-    msg.linear.x = 0.5*2
+    msg.linear.x = 0.5
     return msg
 
 

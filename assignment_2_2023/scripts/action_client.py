@@ -21,10 +21,18 @@ def callback(msg):
     status.v_z = msg.twist.twist.angular.z
     pub.publish(status)
 
+
+def goalReached():
+    return client.get_state() == actionlib.GoalStatus.SUCCEEDED
+
+    
+
+
+
+
 def action_client():
     
-    goal_reached = True
-
+    global client
     client = actionlib.SimpleActionClient('/reaching_goal', assignment_2_2023.msg.PlanningAction)
     client.wait_for_server()
 
@@ -34,12 +42,13 @@ def action_client():
         command = input("Enter command: ")  
 
         if command == 'c':
-            if goal_reached == True:
-                print("You have just reached the goal")
+            if goalReached():
+                print("You have just reached the goal, you cannot cancel it")
             else:
                 client.cancel_goal()
                 rospy.loginfo("Goal cancelled")
-                continue
+                
+            continue
 
         limit = 10
         
@@ -50,7 +59,6 @@ def action_client():
             if x<-limit or x>limit or y<-limit or y>limit:
                 raise Exception(f"Insert values between [{-limit}, {limit}]")
                         
-            goal_reached = False
         except ValueError:
             rospy.loginfo("Invalid input")
             continue
@@ -67,9 +75,6 @@ def action_client():
 
         client.send_goal(goal)
 
-        if client.get_state() == actionlib.GoalStatus.SUCCEEDED and goal_reached==False:
-            rospy.loginfo("Goal reached")
-            goal_reached = True
             
 
 def main():
