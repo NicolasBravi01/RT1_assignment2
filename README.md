@@ -38,7 +38,7 @@ We just have provided theese nodes:
 ### `action_client.py`
 This node is an action client and it allows the user to set a new goal to reach or cancel the current one through console input. Before doing any action, the user has to type a command in order to continue and do something, if he types `c` the goal is go to be cancelled, if he types anything else, he can proceed to set the new position goal through the coordinates `x,y` which must be in the interval `[-10, 10]`. To cancel the goal, it is necessary that the robot has not reached it yet. The other task of this node is to publish the robot position and velocity as a custom message. With the callback function of the subscriber `/odom` it is possible to get those information and we publish them through the publisher called `/status`. Below it is possible to see the Flowchart:
 
-FLOWWWWWWWW
+<img src="flowchart.jpg" width="470" height="600">
 
 
 ### `last_target.py`
@@ -61,5 +61,7 @@ The other callback function refers to the service `/dist_avg` in which we calcul
 
 
 
+## AUTOR
+[Nicolas Bravi](https://github.com/NicolasBravi01)
 
 
