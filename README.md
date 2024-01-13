@@ -35,8 +35,10 @@ We just have provided theese nodes:
   - `wall_follow_service.py `: Service node that makes the robot follow the wall if it meets an obstacle.
   - `go_to_point_service.py `: Service node that makes the robot go straight to the goal position.
 
-### action_client.py
+### `action_client.py`
+This node is an action client and it allows the user to set a new goal to reach or cancel the current one through console inputs. Before doing any action, the user has to type a command to specify what he wants to do, if he types `c` the goal is go to be cancelled, if he types anything else, he can proceed to set the new position goal through the coordinates `x,y` which must be in the interval `[-10, 10]`. To cancel the goal, it is necessary that the robot has not reached it yet. The other task of this node is to publish the robot position and velocity as a custom message, it does it through the publisher called `/status` and the callback function of the subscriber `/odom` gets those information. Below it is possible to see the Flowchart:
 
-### last_target.py
 
-### dis_avg.py
+### `last_target.py`
+
+### `dis_avg.py`
