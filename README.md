@@ -8,4 +8,22 @@ This project entails the development of three ROS (Robot Operating System) nodes
 For this assignment, it was used Gazebo and Rviz within ROS. Gazebo served as the 3D simulation environment to test and refine the robot's movements, while Rviz was used for detailed 3D visualization, with also the information of the robot's sensor.
 
 ## Installing and running
-First of all, 
+First of all, you need to install xterm for the terminal interface
+```bash
+sudo apt-get install xterm
+```
+
+Then, clone the repository to your machine (or download)
+```bash
+git clone https://github.com/NicolasBravi01/RT1_assignment2.git
+```
+Before running, make the python files in the 'scripts' folder executable
+```bash
+cd scripts
+chmod +x *.py
+```
+
+Now it is possible to run
+```bash
+roslaunch assignment_2_2023 assignment1.launch
+```
