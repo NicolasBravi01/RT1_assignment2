@@ -47,7 +47,9 @@ def subCallback(msg):
     v_x_list.append(msg.v_x)
     v_z_list.append(msg.v_z)
 
-    windowSize = 10
+    
+    windowSize = rospy.get_param("/window_size")
+    
 
     #In order to calculate the average, we take the "windowSize" new values
     if len(v_x_list) > windowSize:

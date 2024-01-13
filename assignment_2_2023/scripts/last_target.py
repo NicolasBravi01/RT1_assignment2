@@ -17,7 +17,7 @@ def callback(msg):
 
 def main():
     rospy.init_node('last_input_srv')
-    rospy.Service('last_input_srv', LastInput, callback)
+    rospy.Service('last_input', LastInput, callback)
     rospy.spin()
 
 
