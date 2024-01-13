@@ -36,9 +36,30 @@ We just have provided theese nodes:
   - `go_to_point_service.py `: Service node that makes the robot go straight to the goal position.
 
 ### `action_client.py`
-This node is an action client and it allows the user to set a new goal to reach or cancel the current one through console inputs. Before doing any action, the user has to type a command to specify what he wants to do, if he types `c` the goal is go to be cancelled, if he types anything else, he can proceed to set the new position goal through the coordinates `x,y` which must be in the interval `[-10, 10]`. To cancel the goal, it is necessary that the robot has not reached it yet. The other task of this node is to publish the robot position and velocity as a custom message, it does it through the publisher called `/status` and the callback function of the subscriber `/odom` gets those information. Below it is possible to see the Flowchart:
+This node is an action client and it allows the user to set a new goal to reach or cancel the current one through console input. Before doing any action, the user has to type a command in order to continue and do something, if he types `c` the goal is go to be cancelled, if he types anything else, he can proceed to set the new position goal through the coordinates `x,y` which must be in the interval `[-10, 10]`. To cancel the goal, it is necessary that the robot has not reached it yet. The other task of this node is to publish the robot position and velocity as a custom message. With the callback function of the subscriber `/odom` it is possible to get those information and we publish them through the publisher called `/status`. Below it is possible to see the Flowchart:
+
+FLOWWWWWWWW
 
 
 ### `last_target.py`
+This node is a service node that returns the coordinates of the last target sent by the user through the `action_client.py`. It was possible with the service `/last_input` defined in the folder `srv`. With the callback functions of this service we get the value of the parameters `des_pos_x` and `des_pos_y`. They represent the last goal set by the user and we return them as the response of the service request `/last_input`. It is possible to call this service with the command:
+
+`rosservice call /last_input`
+
+
 
 ### `dis_avg.py`
+Also this node is a service node, it has the purpose to calculate the distance of the robot from the target and the robot's average speed along x-axis (linear) and z-axis (angular). We use the custom message `/status` defined in the `action_client.py` node. This time it is used as a subscriber and it is possible to get information about the current position `x, y` and velocity `v_x, v_z` throgh its callback function. In order to calculate the average, the velocities are saved in a list of the dimension of the param `window_size` specified in the `assigment1.launch` file (now set as 10) and when the number of elements in the list reach that limit, we remove the oldest value added.
+
+The other callback function refers to the service `/dist_avg` in which we calculate the distance from the robot to the goal, knowing the target and current robot position, and the average of the speed along x-axis and z-axis. We return them as the response of the service request `/dist_avg`. It is possible to call this service with the command:
+
+`rosservice call /dist_avg`
+
+
+
+
+
+
+
+
+
