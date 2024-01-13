@@ -2,7 +2,9 @@
 Second assignment of Research Track 1 course at UniGe Robotics Engineering.
 
 ## Introduction
-This project entails the development of three ROS (Robot Operating System) nodes to effectively maneuver a robot in a simulated 3D environment. The main node is designed for user interaction, allowing the specification and cancellation of target coordinates for the robot. One other node is dedicated to showing the coordinates of the last target sent by the user. The other node has to calculate and report the distance of the robot from its target and its average speed. We used Rviz and Gazebo for the simulation.
+This assignment entails the development of three ROS (Robot Operating System) nodes to maneuver a robot in a simulated 3D environment. The main node is designed for user interaction, allowing the specification and cancellation of target coordinates for the robot. Then, two service node are required, the first one is dedicated to showing the coordinates of the last target sent by the user, while the other service node has to calculate and report the distance of the robot from its target and its average speed. We used Rviz and Gazebo for the simulation.
+
+
 
 ### Simulator
 For this assignment, it was used Gazebo and Rviz within ROS. Gazebo served as the 3D simulation environment to test and refine the robot's movements, while Rviz was used for detailed 3D visualization, with also the information of the robot's sensor.
@@ -36,7 +38,7 @@ We just have provided theese nodes:
   - `go_to_point_service.py `: Service node that makes the robot go straight to the goal position.
 
 ### `action_client.py`
-This node is an action client and it allows the user to set a new goal to reach or cancel the current one through console input. Before doing any action, the user has to type a command in order to continue and do something, if he types `c` the goal is go to be cancelled, if he types anything else, he can proceed to set the new position goal through the coordinates `x,y` which must be in the interval `[-10, 10]`. To cancel the goal, it is necessary that the robot has not reached it yet. The other task of this node is to publish the robot position and velocity as a custom message. With the callback function of the subscriber `/odom` it is possible to get those information and we publish them through the publisher called `/status`. Below it is possible to see the Flowchart:
+This node is an action client and it allows the user to set a new goal to reach or cancel the current one through console input. Before doing any action, the user has to type a command in order to choose what to do, if he types `c` the goal is going to be cancelled, else if he types anything else he can proceed to set the new position goal through the coordinates `x,y` which must be in the interval `[-10, 10]`. To cancel the goal, it is necessary that the robot has not reached it yet. The other task of this node is to publish the robot position and velocity as a custom message. With the callback function of the subscriber `/odom` it is possible to get those information and we publish them through the publisher called `/status`. Below it is possible to see the Flowchart:
 
 <img src="flowchart.jpg" width="470" height="600">
 
