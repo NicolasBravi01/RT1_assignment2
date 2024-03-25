@@ -1,5 +1,25 @@
 #! /usr/bin/env python
 
+
+"""
+.. module: Node A, Action Client
+
+   :platform: Unix
+   :synopsis: Action Client node for insert and cancel a goal for the second RT1 assignment 
+ 
+.. moduleauthor:: Nicolas Bravi nicolasbravi2001@gmail.com
+   
+ROS node for controlling the robot
+
+Subscribes to:
+   /odom
+Publishes to:
+   /status
+Clients:
+   /reaching_goal
+   
+"""
+
 import rospy
 from geometry_msgs.msg import Point, Pose, Twist
 from sensor_msgs.msg import LaserScan
@@ -16,6 +36,12 @@ from actionlib_msgs.msg import GoalStatus
 
 # Callback of subscriber '/odom', custom message 'Status' is used as a publisher
 def callback(msg):
+    """
+    Callback function of subscriber '/odom'
+
+    Args:
+        msg: position and velocity of the robot
+    """
     status = Status()
     status.x = msg.pose.pose.position.x
     status.y = msg.pose.pose.position.y
@@ -26,6 +52,9 @@ def callback(msg):
 
 # return true if the goal has been reached by the robot, false otherwise
 def goalReached():
+    """
+    Function which returns true if the goal has been reached by the robot, false otherwise
+    """
     return client.get_state() == actionlib.GoalStatus.SUCCEEDED
 
     
@@ -34,8 +63,9 @@ def goalReached():
 
 
 def action_client():
-    
-    # define action client
+    """
+    Function which defines the action client. It allows the user to set a new goal to reach or cancel the current one through console input.
+    """
     global client
     client = actionlib.SimpleActionClient('/reaching_goal', assignment_2_2023.msg.PlanningAction)
 
@@ -92,6 +122,9 @@ def action_client():
             
 
 def main():
+    """
+    This is the main code of the action client.
+    """
     # initialize node action_client
     rospy.init_node('action_client')
 

@@ -1,5 +1,31 @@
 #! /usr/bin/env python
 
+
+"""
+
+.. module: Node C, Distance and average speed
+
+   :platform: Unix
+   :synopsis: Service node which calculates and returns the distance of the robot from the target and the robot's average speed along x-axis (linear) and z-axis (angular)
+ 
+.. moduleauthor:: Nicolas Bravi nicolasbravi2001@gmail.com
+   
+ROS node for getting the robot-target distance and its average speed.
+
+
+Subscribes to:
+   /status
+Services:
+   /dist_avg
+Clients:
+   /reaching_goal
+   
+"""
+
+
+
+
+
 import rospy
 from assignment_2_2023.msg import Status
 from assignment_2_2023.srv import DisAvg, DisAvgResponse
@@ -22,6 +48,9 @@ v_z_list = []
 
 # callback function for the service
 def distAvgCallback(msg):
+    """
+    Callback function for the service, it responses with the distance of the robot from the target and the robot's average speed along x-axis and z-axis.
+    """
     
     # goal coordinates
     des_x=rospy.get_param('des_pos_x')
@@ -42,6 +71,10 @@ def distAvgCallback(msg):
 
 # callback function for the subscriber '/status'
 def subCallback(msg):
+    """
+    Callback function of subscriber '/status', it updates the values of distance and speed.
+    """
+
 
     global x,y
     
@@ -63,6 +96,9 @@ def subCallback(msg):
 
     
 def main():
+    """
+    This is the main code of the dis_avc service node.
+    """
     # initialize the node dist_avg_srv
     rospy.init_node('dist_avg_srv')
 
